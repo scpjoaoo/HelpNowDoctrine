@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\\Entity\\Pedidos" table="pedidos">
+    <indexes>
+      <index name="ID_Profissional" columns="ID_Profissional"/>
+      <index name="ID_Serviço" columns="ID_Serviço"/>
+      <index name="ID_Cliente" columns="ID_Cliente"/>
+    </indexes>
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="descriçãoDoProblema" type="text" column="Descrição_do_Problema" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="preçoAcordado" type="decimal" column="Preço_Acordado" precision="10" scale="2" nullable="true"/>
+    <field name="dataDoPedido" type="datetime" column="Data_do_Pedido" nullable="true">
+      <options>
+        <option name="default">CURRENT_TIMESTAMP</option>
+      </options>
+    </field>
+    <field name="statusDoPedido" type="string" column="Status_do_Pedido" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="avaliaçãoDoCliente" type="integer" column="Avaliação_do_Cliente" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="avaliaçãoDoProfissional" type="integer" column="Avaliação_do_Profissional" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="idServiço" target-entity="App\\Entity\\Serviços" fetch="LAZY">
+      <join-columns>
+        <join-column name="ID_Serviço" referenced-column-name="ID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idCliente" target-entity="App\\Entity\\Usuários" fetch="LAZY">
+      <join-columns>
+        <join-column name="ID_Cliente" referenced-column-name="ID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idProfissional" target-entity="App\\Entity\\Usuários" fetch="LAZY">
+      <join-columns>
+        <join-column name="ID_Profissional" referenced-column-name="ID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

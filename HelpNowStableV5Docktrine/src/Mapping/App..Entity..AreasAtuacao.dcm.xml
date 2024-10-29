@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\\Entity\\AreasAtuacao" table="areas_atuacao">
+    <unique-constraints>
+      <unique-constraint name="Nome_da_Área_de_Atuação" columns="Nome_da_Área_de_Atuação"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomeDaÁreaDeAtuação" type="string" column="Nome_da_Área_de_Atuação" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-many field="idProfissional" target-entity="App\\Entity\\Usuários" mapped-by="idAreaAtuacao" fetch="LAZY"/>
+  </entity>
+</doctrine-mapping>

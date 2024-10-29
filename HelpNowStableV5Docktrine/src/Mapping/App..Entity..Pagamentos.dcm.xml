@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\\Entity\\Pagamentos" table="pagamentos">
+    <indexes>
+      <index name="id_usuario" columns="id_usuario"/>
+    </indexes>
+    <id name="idPagamento" type="integer" column="id_pagamento">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="valor" type="decimal" column="valor" precision="10" scale="2" nullable="false"/>
+    <field name="dataPagamento" type="date" column="data_pagamento" nullable="false"/>
+    <field name="metodoPagamento" type="string" column="metodo_pagamento" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="statusPagamento" type="string" column="status_pagamento" length="20" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="referenciaExterna" type="string" column="referencia_externa" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idUsuario" target-entity="App\\Entity\\Usuários" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_usuario" referenced-column-name="ID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

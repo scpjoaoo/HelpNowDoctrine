@@ -1,0 +1,22 @@
+{
+    "name": "scpjoaoo/helpnow",
+    "description": "Projeto acadêmico Helpnow.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Scpjoaoo\\Helpnow\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "João Pedro Corrêa Santos"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "doctrine/orm": "^2.20",
+        "symfony/cache": "^6.0",
+        "doctrine/cache": "^2.2"
+    }
+}
